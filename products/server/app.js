@@ -31,7 +31,7 @@ const dbPool = require('mysql').createPool(db);
 
 //로그인
 app.post('/api/login', async (request, res) => {
-    request.session['email'] = 'mingi371@naver.com';
+    request.session['email'] = 'email@naver.com';
     res.send('ok');
 });
 

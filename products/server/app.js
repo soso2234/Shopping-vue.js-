@@ -12,6 +12,11 @@ app.use(session({
     }
 }));
 
+//웹서버에서 받을때 express.json을 선언해야함
+app.use(express.json({
+    limit: '50mb'
+}));
+
 //웹서버 생성
 const server = app.listen(3000, () => {
     console.log("서버시작 포트 : 3000");
@@ -67,7 +72,7 @@ app.post('/apirole/:alias', async (request, res) => {
 //일반조회(로그인없이)
 app.post('/api/:alias', async (request, res) => {
     try{
-        res.send(await req.db(request.params.alias))
+        res.send(await req.db(request.params.alias, request.body.param));
     } catch(err){
         res.status(500).send({
             error: err

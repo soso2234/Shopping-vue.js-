@@ -52,13 +52,18 @@ export default {
     },
 
     methods: {
+        //상품 리스트
         async getProductList() {
             this.productList = await this.$api("/api/productList", {});
             console.log(this.productList);
         },
+
+        //상세화면으로 이동
         goToDetail(product_id) {
             this.$router.push({path:'/detail', query:{product_id:product_id}});
         },
+
+        //숫자 3자리씩 끊기
         getCurrencyFormat(value) {
           return this.$currencyFormat(value);
         },

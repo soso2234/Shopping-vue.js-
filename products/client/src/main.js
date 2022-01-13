@@ -1,13 +1,22 @@
 import {
      createApp 
     } from 'vue'
-import App from './App.vue'
+import App    from './App.vue'
 import router from './router'
 import mixins from './mixins'
+import store  from './store'
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 // import 'bootstrap'
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
 
+const app = createApp(App);
+app.use(router);
+app.mixin(mixins);
+app.use(store);
+app.use(VueSweetalert2);
+app.mount('#app');
 
-createApp(App).use(router).mixin(mixins).mount('#app')
+window.Kakao.init("ea15457a7e8a005ad2825a0643bbbaf3");

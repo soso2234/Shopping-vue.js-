@@ -101,37 +101,36 @@ export default {
     },
 
     methods: {
-      
-        //수량
-        calculatePrice(cnt) {
-          let total = this.total + cnt;
-          if(total < 1){
-            total = 1;
-          }
-          this.total = total;
-          this.totalPrice = this.productDetail.product_price * this.total;
-        },
 
-        //숫자 3자리씩 끊기
-        getCurrencyFormat(value) {
-          return this.$currencyFormat(value);
-        },
-
-        //상세화면
-        async getProductDetail() {
-            let productDetail = await this.$api("/api/productDetail", {param:[this.productId]});
-            if(productDetail.length > 0) {
-              this.productDetail = productDetail[0];
-              this.totalPrice = this.totalPrice = this.productDetail.product_price * this.total;
-            }
-            console.log(this.productDetail);
-        },
-
-        //상세화면 이미지
-        async getProductImage() {
-            this.productImage = await this.$api("/api/productMainImages", {param:[this.productId]});
-            console.log(this.productImage);
+      //수량
+      calculatePrice(cnt) {
+        let total = this.total + cnt;
+        if(total < 1){
+          total = 1;
         }
+        this.total = total;
+        this.totalPrice = this.productDetail.product_price * this.total;
+      },
+
+      //숫자 3자리씩 끊기
+      getCurrencyFormat(value) {
+        return this.$currencyFormat(value);
+      },
+
+      //상세화면
+      async getProductDetail() {
+          let productDetail = await this.$api("/api/productDetail", {param:[this.productId]});
+          if(productDetail.length > 0) {
+            this.productDetail = productDetail[0];
+            this.totalPrice = this.totalPrice = this.productDetail.product_price * this.total;
+          }
+      },
+
+      //상세화면 이미지
+      async getProductImage() {
+          this.productImage = await this.$api("/api/productMainImages", {param:[this.productId]});
+          console.log(this.productImage);
+      }
     }
 }
 </script>

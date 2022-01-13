@@ -36,8 +36,21 @@ const dbPool = require('mysql').createPool(db);
 
 //로그인
 app.post('/api/login', async (request, res) => {
-    request.session['email'] = 'email@naver.com';
-    res.send('ok');
+    // request.session['email'] = 'email@naver.com';
+    // res.send('ok');
+    try{
+        await req.db('signUp', request.body.param);
+        if(request.body.param.length > 0){
+            for(let key in request.body.param[0]) request.session[key] = request.body.param[0][key];
+            res.send(request.body.param[0]);
+        } else{
+            res.send({error:"다시 시도 해주시기 바랍니다."});
+        }
+    } catch(err){
+        res.send({
+            error:"DB 접근 오류"
+        });
+    }
 });
 
 //로그아웃

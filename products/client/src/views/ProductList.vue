@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-3 col-lg-4 col-md-6" :key="i" v-for="(product, i) in productList">
+                <div class="col-xl-3 col-lg-4 col-md-6 me-3" :key="i" v-for="(product, i) in productList">
                     <div class="card" style="width: 18rem;">
                         <a @click="goToDetail(product.id);" style="cursor:pointer;">
                             <img :src="product.path" class="card-img-top" alt="...">

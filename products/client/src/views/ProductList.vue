@@ -66,7 +66,7 @@ export default {
         //숫자 3자리씩 끊기
         getCurrencyFormat(value) {
           return this.$currencyFormat(value);
-        },
+        }
     }
 }
 </script>

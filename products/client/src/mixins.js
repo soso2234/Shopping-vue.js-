@@ -69,8 +69,7 @@ export default {
             while (r.test(v)) {
                 v = v.replace(r, '$1' + groupingSeparator + '$2');
             }
-
             return prefix + currency + String(v) + String(d);
-            }
+        }
     }
 }

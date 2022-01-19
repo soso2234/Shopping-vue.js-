@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="javascript:kakaoLogin();"><img src="http://papaspick.com/web/upload/2019_web/icon/kakao_login.jpg" style="height: 60px; width: auto;"></a>
+    <script src="https://developer.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+        //495352afc7ad2c6c24b84ba29e9f9488
+        window.Kakao.init("ea15457a7e8a005ad2825a0643bbbaf3");
+
+        function kakaoLogin() {
+            window.Kakao.Auth.login({
+                scope:'profile, account_email, gender',
+                success: function(authObj) {
+                    console.log(authObj);
+                    window.Kakao.API.request({
+                        url:'/v2/user/me',
+                        success: res => {
+                            const kakao_account = res.kakao_account;
+                            console.log(kakao_account);
+                            console.log("로그인 성공했어요~!");
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>
